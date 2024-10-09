@@ -40,4 +40,24 @@ public class Cell {
         }
     }
 
+    public void placeWall(Cell neighbour) {
+        //Север
+        if (neighbour.x == x && neighbour.y == y - 1) {
+            walls[Direction.NORTH.ordinal()] = true;
+            neighbour.walls[Direction.SOUTH.ordinal()] = true;
+        }//Восток
+        else if (neighbour.x == x + 1 && neighbour.y == y) {
+            walls[Direction.EAST.ordinal()] = true;
+            neighbour.walls[Direction.WEST.ordinal()] = true;
+        }//Юг
+        else if (neighbour.x == x && neighbour.y == y + 1) {
+            walls[Direction.SOUTH.ordinal()] = true;
+            neighbour.walls[Direction.NORTH.ordinal()] = true;
+        }//Запад
+        else if (neighbour.x == x - 1 && neighbour.y == y) {
+            walls[Direction.WEST.ordinal()] = true;
+            neighbour.walls[Direction.EAST.ordinal()] = true;
+        }
+    }
+
 }
