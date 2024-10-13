@@ -13,8 +13,8 @@ import java.io.PrintWriter;
 public class UserInteraction {
     private int height;
     private int width;
-    private Cell start;
-    private Cell finish;
+    private Coordinate start;
+    private Coordinate finish;
 
     public void getStartParams(InputStream input, OutputStream output) throws IOException {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(output), true);
@@ -31,17 +31,15 @@ public class UserInteraction {
         writer.println("Введите позицию начала лабиринта");
         writer.println("Введите x координату от 0 до " + (height - 1));
         String xStartInput = reader.readLine();
-        start.setX(Integer.parseInt(xStartInput));
         writer.println("Введите y координату от 0 до " + (width - 1));
         String yStartInput = reader.readLine();
-        start.setY(Integer.parseInt(yStartInput));
+        start = new Coordinate(Integer.parseInt(xStartInput), Integer.parseInt(yStartInput));
 
         writer.println("Введите позицию конца лабиринта");
         writer.println("Введите x координату от 0 до " + (height - 1));
         String xFinishInput = reader.readLine();
-        start.setX(Integer.parseInt(xFinishInput));
         writer.println("Введите y координату от 0 до " + (width - 1));
         String yFinishInput = reader.readLine();
-        start.setY(Integer.parseInt(yFinishInput));
+        finish = new Coordinate(Integer.parseInt(xFinishInput), Integer.parseInt(yFinishInput));
     }
 }

@@ -16,6 +16,13 @@ public class Cell {
         this.y = y;
     }
 
+    public Cell(Cell cell){
+        this.x=cell.getX();
+        this.y=cell.getY();
+        this.isVisited=cell.isVisited;
+        System.arraycopy(cell.walls, 0, this.walls, 0, this.walls.length);
+    }
+
     boolean hasWall(Direction dir) {
         return walls[dir.ordinal()];
     }

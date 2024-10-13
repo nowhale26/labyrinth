@@ -23,7 +23,7 @@ public class EllerMazeGenerator implements MazeGenerator {
         nextGroup = width;
     }
 
-    public void initializeMaze() {
+    private void initializeMaze() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 maze[x][y] = new Cell(x, y);
