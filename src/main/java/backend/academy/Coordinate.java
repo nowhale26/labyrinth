@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter
 public class Coordinate {
     private final int x;
     private final int y;
     private Coordinate previousCoordinate;
+    private int distance;
 
     public Coordinate(int x, int y) {
         this.x = x;

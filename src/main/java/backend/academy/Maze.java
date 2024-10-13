@@ -6,15 +6,26 @@ import lombok.Getter;
 public class Maze {
     private final int height;
     private final int width;
-    private final Cell[][] maze;
+    private final Cell[][] mazeGrid;
 
-    Maze(int height, int width, Cell[][] maze) {
+    Maze(int height, int width, Cell[][] mazeGrid) {
         this.height = height;
         this.width = width;
-        this.maze = new Cell[maze.length][maze[0].length];
-        for(int i=0;i< maze.length;i++){
-            for(int j=0;j<maze[0].length;j++){
-                this.maze[i][j]= new Cell(maze[i][j]);
+        this.mazeGrid = new Cell[mazeGrid.length][mazeGrid[0].length];
+        for(int i = 0; i< mazeGrid.length; i++){
+            for(int j = 0; j< mazeGrid[0].length; j++){
+                this.mazeGrid[i][j]= new Cell(mazeGrid[i][j]);
+            }
+        }
+    }
+
+    Maze(Maze mazeGrid){
+        this.height = mazeGrid.getHeight();
+        this.width = mazeGrid.getWidth();
+        this.mazeGrid = new Cell[mazeGrid.getMazeGrid().length][mazeGrid.getMazeGrid()[0].length];
+        for(int i = 0; i< mazeGrid.getMazeGrid().length; i++){
+            for(int j = 0; j< mazeGrid.getMazeGrid()[0].length; j++){
+                this.mazeGrid[i][j]= new Cell(mazeGrid.getMazeGrid()[i][j]);
             }
         }
     }
