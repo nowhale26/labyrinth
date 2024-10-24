@@ -20,7 +20,12 @@ public class Displayer implements MazeDisplayer {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 mazeString.append(mazeGrid[x][y].hasWall(Direction.WEST) ? "|" : " ");
-                mazeString.append("   ");
+                if(mazeGrid[x][y].isSwamp()){
+                    mazeString.append(" # ");
+                }
+                else{
+                    mazeString.append("   ");
+                }
             }
             mazeString.append(mazeGrid[width - 1][y].hasWall(Direction.EAST) ? "|\n" : " \n");
             for (int x = 0; x < width; x++) {
@@ -69,7 +74,12 @@ public class Displayer implements MazeDisplayer {
                         mazeString.append(" o ");
                     }
                 } else {
-                    mazeString.append("   ");
+                    if(mazeGrid[x][y].isSwamp()){
+                        mazeString.append(" # ");
+                    }
+                    else{
+                        mazeString.append("   ");
+                    }
                 }
             }
 

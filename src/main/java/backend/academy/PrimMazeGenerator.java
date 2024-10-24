@@ -18,7 +18,7 @@ public class PrimMazeGenerator implements MazeGenerator {
         initializeMaze();
     }
 
-    public void initializeMaze() {
+    private void initializeMaze() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 maze[x][y] = new Cell(x, y);
@@ -41,7 +41,21 @@ public class PrimMazeGenerator implements MazeGenerator {
                 addNextEdges(edge.nextCell);
             }
         }
+        assignSwamp();
         return new Maze(height, width, maze);
+    }
+
+    private void assignSwamp() {
+        int swamps = height * width / 5;
+        while (swamps > 0) {
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
+            Cell cell = maze[x][y];
+            if (!cell.isSwamp()) {
+                cell.setSwamp(true);
+                swamps--;
+            }
+        }
     }
 
     private void addNextEdges(Cell cell) {

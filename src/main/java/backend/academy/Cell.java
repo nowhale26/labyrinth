@@ -8,7 +8,9 @@ import lombok.Setter;
 public class Cell {
     private int x;
     private int y;
+    private boolean isSwamp=false;
     boolean isVisited = false;
+
     boolean[] walls = {true, true, true, true};
 
     public Cell(int x, int y) {
@@ -20,6 +22,7 @@ public class Cell {
         this.x=cell.getX();
         this.y=cell.getY();
         this.isVisited=cell.isVisited;
+        this.isSwamp= cell.isSwamp();
         System.arraycopy(cell.walls, 0, this.walls, 0, this.walls.length);
     }
 
