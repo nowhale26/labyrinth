@@ -10,7 +10,7 @@ public class BfsMazeSolver implements MazeSolver {
     private final Coordinate start;
     private final Coordinate finish;
 
-    BfsMazeSolver(Maze maze, Coordinate start, Coordinate finish) {
+    public BfsMazeSolver(Maze maze, Coordinate start, Coordinate finish) {
         this.maze = new Maze(maze);
         this.start = new Coordinate(start);
         this.finish = new Coordinate(finish);

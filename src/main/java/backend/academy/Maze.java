@@ -8,7 +8,7 @@ public class Maze {
     private final int width;
     private final Cell[][] mazeGrid;
 
-    Maze(int height, int width, Cell[][] mazeGrid) {
+    public Maze(int height, int width, Cell[][] mazeGrid) {
         this.height = height;
         this.width = width;
         this.mazeGrid = new Cell[mazeGrid.length][mazeGrid[0].length];
@@ -19,7 +19,7 @@ public class Maze {
         }
     }
 
-    Maze(Maze mazeGrid){
+    public Maze(Maze mazeGrid){
         this.height = mazeGrid.getHeight();
         this.width = mazeGrid.getWidth();
         this.mazeGrid = new Cell[mazeGrid.getMazeGrid().length][mazeGrid.getMazeGrid()[0].length];
