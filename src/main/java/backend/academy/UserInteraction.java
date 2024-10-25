@@ -19,27 +19,59 @@ public class UserInteraction {
     public void getStartParams(InputStream input, OutputStream output) throws IOException {
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(output), true);
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        height = 0;
+        while (height < Constants.MIN_SIZE || height > Constants.MAX_SIZE) {
+            writer.println("Введите высоту лабиринта от " + Constants.MIN_SIZE + " до " + Constants.MAX_SIZE);
+            String heightInput = reader.readLine();
+            height = Integer.parseInt(heightInput);
+        }
+        width = 0;
+        while (width < Constants.MIN_SIZE || width > Constants.MAX_SIZE) {
+            writer.println("Введите ширину лабиринта от " + Constants.MIN_SIZE + " до " + Constants.MAX_SIZE);
+            String widthInput = reader.readLine();
+            width = Integer.parseInt(widthInput);
+        }
+        start = new Coordinate(-1, -1);
+        while (start.getX() > width - 1 || start.getY() > height - 1 || start.getX() < 0 || start.getY() < 0) {
+            writer.println("Введите позицию начала лабиринта");
+            writer.println("Введите x координату от 0 до " + (width - 1));
+            String xStartInput = reader.readLine();
+            writer.println("Введите y координату от 0 до " + (height - 1));
+            String yStartInput = reader.readLine();
+            start.setX(Integer.parseInt(xStartInput));
+            start.setY(Integer.parseInt(yStartInput));
+        }
+        finish = new Coordinate(-1, -1);
+        while (finish.getX() > width - 1 || finish.getY() > height - 1 || finish.getX() < 0 || finish.getY() < 0) {
+            writer.println("Введите позицию конца лабиринта");
+            writer.println("Введите x координату от 0 до " + (width - 1));
+            String xFinishInput = reader.readLine();
+            writer.println("Введите y координату от 0 до " + (height - 1));
+            String yFinishInput = reader.readLine();
+            finish.setX(Integer.parseInt(xFinishInput));
+            finish.setY(Integer.parseInt(yFinishInput));
+        }
 
-        writer.println("Введите высоту лабиринта от " + Constants.MIN_SIZE + " до " + Constants.MAX_SIZE);
-        String heightInput = reader.readLine();
-        height = Integer.parseInt(heightInput);
+    }
 
-        writer.println("Введите ширину лабиринта от " + Constants.MIN_SIZE + " до " + Constants.MAX_SIZE);
-        String widthInput = reader.readLine();
-        width = Integer.parseInt(widthInput);
+    public void drawSwampMaze(OutputStream output) throws IOException {
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(output), true);
+        writer.println("Болото обозначено символом '#'");
+        MazeGenerator mazeGenerator = new PrimMazeGenerator(height, width);
+        Maze maze = mazeGenerator.generateMaze();
+        MazeSolver mazeSolver = new SwampMazeSolver(maze, start, finish);
+        Displayer displayer = new Displayer();
+        writer.println(displayer.displayMaze(maze));
+        writer.println(displayer.displayMaze(maze, mazeSolver.solveMaze()));
+    }
 
-        writer.println("Введите позицию начала лабиринта");
-        writer.println("Введите x координату от 0 до " + (height - 1));
-        String xStartInput = reader.readLine();
-        writer.println("Введите y координату от 0 до " + (width - 1));
-        String yStartInput = reader.readLine();
-        start = new Coordinate(Integer.parseInt(xStartInput), Integer.parseInt(yStartInput));
-
-        writer.println("Введите позицию конца лабиринта");
-        writer.println("Введите x координату от 0 до " + (height - 1));
-        String xFinishInput = reader.readLine();
-        writer.println("Введите y координату от 0 до " + (width - 1));
-        String yFinishInput = reader.readLine();
-        finish = new Coordinate(Integer.parseInt(xFinishInput), Integer.parseInt(yFinishInput));
+    public void drawMaze(OutputStream output) throws IOException {
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(output), true);
+        MazeGenerator mazeGenerator = new EllerMazeGenerator(height, width);
+        Maze maze = mazeGenerator.generateMaze();
+        MazeSolver mazeSolver = new BfsMazeSolver(maze, start, finish);
+        Displayer displayer = new Displayer();
+        writer.println(displayer.displayMaze(maze));
+        writer.println(displayer.displayMaze(maze, mazeSolver.solveMaze()));
     }
 }

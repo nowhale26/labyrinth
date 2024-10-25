@@ -5,6 +5,6 @@ public class Constants {
 
     }
 
-    public static final int MIN_SIZE = 10;
-    public static final int MAX_SIZE = 100;
+    public static final int MIN_SIZE = 5;
+    public static final int MAX_SIZE = 50;
 }

@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Coordinate {
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private Coordinate previousCoordinate;
     private int distance;
 
