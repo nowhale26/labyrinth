@@ -14,25 +14,26 @@ public class Displayer implements MazeDisplayer {
         final Cell[][] mazeGrid = maze.getMazeGrid();
         for (int x = 0; x < width; x++) {
             mazeString.append("+");
-            mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? "---" : "   ");
+            mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
         }
-        mazeString.append("+\n");
+        mazeString.append(Constants.CROSS_LINE_BREAKER);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 mazeString.append(mazeGrid[x][y].hasWall(Direction.WEST) ? "|" : " ");
-                if(mazeGrid[x][y].isSwamp()){
-                    mazeString.append(" # ");
-                }
-                else{
-                    mazeString.append("   ");
+                if (mazeGrid[x][y].isSwamp()) {
+                    mazeString.append(Constants.SWAMP_SYMBOL);
+                } else {
+                    mazeString.append(Constants.SPACE);
                 }
             }
-            mazeString.append(mazeGrid[width - 1][y].hasWall(Direction.EAST) ? "|\n" : " \n");
+            mazeString.append(
+                mazeGrid[width - 1][y].hasWall(Direction.EAST) ? Constants.WALL_LINE_BREAKER : Constants.LINE_BREAKER);
             for (int x = 0; x < width; x++) {
                 mazeString.append("+");
-                mazeString.append(mazeGrid[x][y].hasWall(Direction.SOUTH) ? "---" : "   ");
+                mazeString.append(
+                    mazeGrid[x][y].hasWall(Direction.SOUTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
             }
-            mazeString.append("+\n");
+            mazeString.append(Constants.CROSS_LINE_BREAKER);
         }
         return mazeString.toString();
     }
@@ -51,9 +52,9 @@ public class Displayer implements MazeDisplayer {
 
         for (int x = 0; x < width; x++) {
             mazeString.append("+");
-            mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? "---" : "   ");
+            mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
         }
-        mazeString.append("+\n");
+        mazeString.append(Constants.CROSS_LINE_BREAKER);
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -74,22 +75,23 @@ public class Displayer implements MazeDisplayer {
                         mazeString.append(" o ");
                     }
                 } else {
-                    if(mazeGrid[x][y].isSwamp()){
-                        mazeString.append(" # ");
-                    }
-                    else{
-                        mazeString.append("   ");
+                    if (mazeGrid[x][y].isSwamp()) {
+                        mazeString.append(Constants.SWAMP_SYMBOL);
+                    } else {
+                        mazeString.append(Constants.SPACE);
                     }
                 }
             }
 
-            mazeString.append(mazeGrid[width - 1][y].hasWall(Direction.EAST) ? "|\n" : " \n");
+            mazeString.append(
+                mazeGrid[width - 1][y].hasWall(Direction.EAST) ? Constants.WALL_LINE_BREAKER : Constants.LINE_BREAKER);
 
             for (int x = 0; x < width; x++) {
                 mazeString.append("+");
-                mazeString.append(mazeGrid[x][y].hasWall(Direction.SOUTH) ? "---" : "   ");
+                mazeString.append(
+                    mazeGrid[x][y].hasWall(Direction.SOUTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
             }
-            mazeString.append("+\n");
+            mazeString.append(Constants.CROSS_LINE_BREAKER);
         }
 
         return mazeString.toString();

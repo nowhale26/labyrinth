@@ -46,7 +46,7 @@ public class PrimMazeGenerator implements MazeGenerator {
     }
 
     private void assignSwamp() {
-        int swamps = height * width / 5;
+        int swamps = height * width / Constants.SWAMP_DIVIDER;
         while (swamps > 0) {
             int x = random.nextInt(width);
             int y = random.nextInt(height);

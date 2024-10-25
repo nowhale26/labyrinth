@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Cell {
     private int x;
     private int y;
-    private boolean isSwamp=false;
+    private boolean isSwamp = false;
     boolean isVisited = false;
 
     boolean[] walls = {true, true, true, true};
@@ -18,11 +18,11 @@ public class Cell {
         this.y = y;
     }
 
-    public Cell(Cell cell){
-        this.x=cell.getX();
-        this.y=cell.getY();
-        this.isVisited=cell.isVisited;
-        this.isSwamp= cell.isSwamp();
+    public Cell(Cell cell) {
+        this.x = cell.getX();
+        this.y = cell.getY();
+        this.isVisited = cell.isVisited;
+        this.isSwamp = cell.isSwamp();
         System.arraycopy(cell.walls, 0, this.walls, 0, this.walls.length);
     }
 
@@ -31,40 +31,41 @@ public class Cell {
     }
 
     public void removeWall(Cell neighbour) {
-        //Север
         if (neighbour.x == x && neighbour.y == y - 1) {
+            //Север
             walls[Direction.NORTH.ordinal()] = false;
             neighbour.walls[Direction.SOUTH.ordinal()] = false;
-        }//Восток
-        else if (neighbour.x == x + 1 && neighbour.y == y) {
+        } else if (neighbour.x == x + 1 && neighbour.y == y) {
+            //Восток
             walls[Direction.EAST.ordinal()] = false;
             neighbour.walls[Direction.WEST.ordinal()] = false;
-        }//Юг
-        else if (neighbour.x == x && neighbour.y == y + 1) {
+        } else if (neighbour.x == x && neighbour.y == y + 1) {
+            //Юг
             walls[Direction.SOUTH.ordinal()] = false;
             neighbour.walls[Direction.NORTH.ordinal()] = false;
-        }//Запад
-        else if (neighbour.x == x - 1 && neighbour.y == y) {
+        } else if (neighbour.x == x - 1 && neighbour.y == y) {
+            //Запад
             walls[Direction.WEST.ordinal()] = false;
             neighbour.walls[Direction.EAST.ordinal()] = false;
         }
     }
 
     public void placeWall(Cell neighbour) {
-        //Север
+
         if (neighbour.x == x && neighbour.y == y - 1) {
+            //Север
             walls[Direction.NORTH.ordinal()] = true;
             neighbour.walls[Direction.SOUTH.ordinal()] = true;
-        }//Восток
-        else if (neighbour.x == x + 1 && neighbour.y == y) {
+        } else if (neighbour.x == x + 1 && neighbour.y == y) {
+            //Восток
             walls[Direction.EAST.ordinal()] = true;
             neighbour.walls[Direction.WEST.ordinal()] = true;
-        }//Юг
-        else if (neighbour.x == x && neighbour.y == y + 1) {
+        } else if (neighbour.x == x && neighbour.y == y + 1) {
+            //Юг
             walls[Direction.SOUTH.ordinal()] = true;
             neighbour.walls[Direction.NORTH.ordinal()] = true;
-        }//Запад
-        else if (neighbour.x == x - 1 && neighbour.y == y) {
+        } else if (neighbour.x == x - 1 && neighbour.y == y) {
+            //Запад
             walls[Direction.WEST.ordinal()] = true;
             neighbour.walls[Direction.EAST.ordinal()] = true;
         }

@@ -1,18 +1,16 @@
 package backend.academy;
 
-import org.checkerframework.checker.units.qual.C;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class SwampMazeSolver implements MazeSolver{
+public class SwampMazeSolver implements MazeSolver {
     private final Maze maze;
     private final Coordinate start;
     private final Coordinate finish;
 
-    public SwampMazeSolver(Maze maze, Coordinate start, Coordinate finish){
+    public SwampMazeSolver(Maze maze, Coordinate start, Coordinate finish) {
         this.maze = new Maze(maze);
         this.start = new Coordinate(start);
         this.finish = new Coordinate(finish);
@@ -22,8 +20,9 @@ public class SwampMazeSolver implements MazeSolver{
     public List<Coordinate> solveMaze() {
         int[][] dist = new int[maze.getWidth()][maze.getHeight()];
         Cell[][] prev = new Cell[maze.getWidth()][maze.getHeight()];
-        for (int[] row : dist)
+        for (int[] row : dist) {
             Arrays.fill(row, Integer.MAX_VALUE);
+        }
 
         dist[start.getX()][start.getY()] = 0;
 
@@ -38,11 +37,13 @@ public class SwampMazeSolver implements MazeSolver{
             int x = currentCell.getX();
             int y = currentCell.getY();
 
-            if (current.distance > dist[x][y])
+            if (current.distance > dist[x][y]) {
                 continue;
+            }
 
-            if (currentCell.equals(endCell))
+            if (currentCell.equals(endCell)) {
                 break;
+            }
 
             for (Direction dir : Direction.values()) {
                 if (!currentCell.hasWall(dir)) {
@@ -50,7 +51,7 @@ public class SwampMazeSolver implements MazeSolver{
                     int ny = y + dir.dy;
                     if (checkValidCell(nx, ny)) {
                         Cell neighbor = maze.getMazeGrid()[nx][ny];
-                        int weight = neighbor.isSwamp() ? 3 : 1;
+                        int weight = neighbor.isSwamp() ? Constants.SWAMP_VALUE : 1;
                         if (dist[nx][ny] > dist[x][y] + weight) {
                             dist[nx][ny] = dist[x][y] + weight;
                             prev[nx][ny] = currentCell;

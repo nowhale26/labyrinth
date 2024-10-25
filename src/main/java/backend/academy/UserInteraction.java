@@ -1,6 +1,5 @@
 package backend.academy;
 
-import lombok.Getter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import lombok.Getter;
 
 @Getter
 public class UserInteraction {
@@ -21,22 +21,22 @@ public class UserInteraction {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         height = 0;
         while (height < Constants.MIN_SIZE || height > Constants.MAX_SIZE) {
-            writer.println("Введите высоту лабиринта от " + Constants.MIN_SIZE + " до " + Constants.MAX_SIZE);
+            writer.println("Введите высоту лабиринта от " + Constants.MIN_SIZE + Constants.BEFORE + Constants.MAX_SIZE);
             String heightInput = reader.readLine();
             height = Integer.parseInt(heightInput);
         }
         width = 0;
         while (width < Constants.MIN_SIZE || width > Constants.MAX_SIZE) {
-            writer.println("Введите ширину лабиринта от " + Constants.MIN_SIZE + " до " + Constants.MAX_SIZE);
+            writer.println("Введите ширину лабиринта от " + Constants.MIN_SIZE + Constants.BEFORE + Constants.MAX_SIZE);
             String widthInput = reader.readLine();
             width = Integer.parseInt(widthInput);
         }
         start = new Coordinate(-1, -1);
         while (start.getX() > width - 1 || start.getY() > height - 1 || start.getX() < 0 || start.getY() < 0) {
             writer.println("Введите позицию начала лабиринта");
-            writer.println("Введите x координату от 0 до " + (width - 1));
+            writer.println(Constants.TYPE_X + (width - 1));
             String xStartInput = reader.readLine();
-            writer.println("Введите y координату от 0 до " + (height - 1));
+            writer.println(Constants.TYPE_Y + (height - 1));
             String yStartInput = reader.readLine();
             start.setX(Integer.parseInt(xStartInput));
             start.setY(Integer.parseInt(yStartInput));
@@ -44,9 +44,9 @@ public class UserInteraction {
         finish = new Coordinate(-1, -1);
         while (finish.getX() > width - 1 || finish.getY() > height - 1 || finish.getX() < 0 || finish.getY() < 0) {
             writer.println("Введите позицию конца лабиринта");
-            writer.println("Введите x координату от 0 до " + (width - 1));
+            writer.println(Constants.TYPE_X + (width - 1));
             String xFinishInput = reader.readLine();
-            writer.println("Введите y координату от 0 до " + (height - 1));
+            writer.println(Constants.TYPE_Y + (height - 1));
             String yFinishInput = reader.readLine();
             finish.setX(Integer.parseInt(xFinishInput));
             finish.setY(Integer.parseInt(yFinishInput));
