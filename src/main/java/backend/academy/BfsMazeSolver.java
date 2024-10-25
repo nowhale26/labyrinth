@@ -64,7 +64,7 @@ public class BfsMazeSolver implements MazeSolver {
     }
 
     private List<Coordinate> getPath(Coordinate[][] grid) {
-        List<Coordinate> path = new ArrayList<>();
+        List<Coordinate> path = new ArrayList<>(grid.length * grid[0].length);
         path.add(grid[finish.getX()][finish.getY()]);
         Coordinate currentCoordinate = grid[finish.getX()][finish.getY()].getPreviousCoordinate();
         while (currentCoordinate.getX() != start.getX() || currentCoordinate.getY() != start.getY()) {

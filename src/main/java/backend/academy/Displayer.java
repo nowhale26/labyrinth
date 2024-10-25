@@ -1,19 +1,21 @@
 package backend.academy;
 
-import java.util.Arrays;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Displayer implements MazeDisplayer {
     @Override
+    @SuppressFBWarnings("CLI_CONSTANT_LIST_INDEX")
     public String displayMaze(Maze maze) {
         StringBuilder mazeString = new StringBuilder();
         final int width = maze.getWidth();
         final int height = maze.getHeight();
         final Cell[][] mazeGrid = maze.getMazeGrid();
         for (int x = 0; x < width; x++) {
-            mazeString.append("+");
+            mazeString.append('+');
+
             mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
         }
         mazeString.append(Constants.CROSS_LINE_BREAKER);
@@ -29,7 +31,7 @@ public class Displayer implements MazeDisplayer {
             mazeString.append(
                 mazeGrid[width - 1][y].hasWall(Direction.EAST) ? Constants.WALL_LINE_BREAKER : Constants.LINE_BREAKER);
             for (int x = 0; x < width; x++) {
-                mazeString.append("+");
+                mazeString.append('+');
                 mazeString.append(
                     mazeGrid[x][y].hasWall(Direction.SOUTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
             }
@@ -39,19 +41,17 @@ public class Displayer implements MazeDisplayer {
     }
 
     @Override
+    @SuppressFBWarnings("CLI_CONSTANT_LIST_INDEX")
     public String displayMaze(Maze maze, List<Coordinate> path) {
         StringBuilder mazeString = new StringBuilder();
         final int width = maze.getWidth();
         final int height = maze.getHeight();
         final Cell[][] mazeGrid = maze.getMazeGrid();
 
-        Set<int[]> pathSet = new HashSet<>();
-        for (Coordinate coord : path) {
-            pathSet.add(new int[] {coord.getX(), coord.getY()});
-        }
+        Set<Coordinate> pathSet = new HashSet<>(path);
 
         for (int x = 0; x < width; x++) {
-            mazeString.append("+");
+            mazeString.append('+');
             mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
         }
         mazeString.append(Constants.CROSS_LINE_BREAKER);
@@ -60,13 +60,12 @@ public class Displayer implements MazeDisplayer {
             for (int x = 0; x < width; x++) {
                 mazeString.append(mazeGrid[x][y].hasWall(Direction.WEST) ? "|" : " ");
 
-                int finalX = x;
-                int finalY = y;
-                boolean isInPath = pathSet.stream().anyMatch(arr -> Arrays.equals(arr, new int[] {finalX, finalY}));
+                Coordinate currentCoord = new Coordinate(x, y);
+                boolean isInPath = pathSet.contains(currentCoord);
 
                 if (isInPath) {
-                    Coordinate start = path.getLast();
-                    Coordinate finish = path.getFirst();
+                    Coordinate start = path.get(path.size() - 1);
+                    Coordinate finish = path.get(0);
                     if (x == start.getX() && y == start.getY()) {
                         mazeString.append(" S ");
                     } else if (x == finish.getX() && y == finish.getY()) {
@@ -87,7 +86,7 @@ public class Displayer implements MazeDisplayer {
                 mazeGrid[width - 1][y].hasWall(Direction.EAST) ? Constants.WALL_LINE_BREAKER : Constants.LINE_BREAKER);
 
             for (int x = 0; x < width; x++) {
-                mazeString.append("+");
+                mazeString.append('+');
                 mazeString.append(
                     mazeGrid[x][y].hasWall(Direction.SOUTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
             }
@@ -96,4 +95,5 @@ public class Displayer implements MazeDisplayer {
 
         return mazeString.toString();
     }
+
 }

@@ -18,4 +18,6 @@ public class Constants {
     public static final String BEFORE = " до ";
     public static final String TYPE_X = "Введите x координату от 0 до ";
     public static final String TYPE_Y = "Введите y координату от 0 до ";
+    public static final String ERROR_X = "Ошибка: Не удалось прочитать позицию X";
+    public static final String ERROR_Y = "Ошибка: Не удалось прочитать позицию Y";
 }

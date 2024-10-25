@@ -1,5 +1,6 @@
 package backend.academy;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;
 
 @Getter
@@ -8,6 +9,7 @@ public class Maze {
     private final int width;
     private final Cell[][] mazeGrid;
 
+    @SuppressFBWarnings("CLI_CONSTANT_LIST_INDEX")
     public Maze(int height, int width, Cell[][] mazeGrid) {
         this.height = height;
         this.width = width;
@@ -19,6 +21,7 @@ public class Maze {
         }
     }
 
+    @SuppressFBWarnings("CLI_CONSTANT_LIST_INDEX")
     public Maze(Maze mazeGrid) {
         this.height = mazeGrid.getHeight();
         this.width = mazeGrid.getWidth();

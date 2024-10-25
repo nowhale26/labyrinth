@@ -1,15 +1,15 @@
 package backend.academy;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class PrimMazeGenerator implements MazeGenerator {
     private final int height;
     private final int width;
     private Cell[][] maze;
     private List<Edge> nextEdges = new ArrayList<>();
-    private Random random = new Random();
+    private SecureRandom random = new SecureRandom();
 
     PrimMazeGenerator(int height, int width) {
         this.height = height;

@@ -1,17 +1,17 @@
 package backend.academy;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class EllerMazeGenerator implements MazeGenerator {
     private final int height;
     private final int width;
-    private Cell[][] maze;
-    private Random random = new Random();
+    private final Cell[][] maze;
+    private final SecureRandom random = new SecureRandom();
     private int[] line;
     private int nextGroup;
 

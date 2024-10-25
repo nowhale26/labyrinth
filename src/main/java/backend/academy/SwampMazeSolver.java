@@ -3,6 +3,7 @@ package backend.academy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class SwampMazeSolver implements MazeSolver {
@@ -93,6 +94,23 @@ public class SwampMazeSolver implements MazeSolver {
         @Override
         public int compareTo(CellDistance other) {
             return Integer.compare(this.distance, other.distance);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            CellDistance other = (CellDistance) obj;
+            return distance == other.distance && (cell != null ? cell.equals(other.cell) : other.cell == null);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(cell, distance);
         }
     }
 }
