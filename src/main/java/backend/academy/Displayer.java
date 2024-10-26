@@ -13,12 +13,7 @@ public class Displayer implements MazeDisplayer {
         final int width = maze.getWidth();
         final int height = maze.getHeight();
         final Cell[][] mazeGrid = maze.getMazeGrid();
-        for (int x = 0; x < width; x++) {
-            mazeString.append('+');
-
-            mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
-        }
-        mazeString.append(Constants.CROSS_LINE_BREAKER);
+        printFirstLine(mazeString, maze);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 mazeString.append(mazeGrid[x][y].hasWall(Direction.WEST) ? "|" : " ");
@@ -50,11 +45,7 @@ public class Displayer implements MazeDisplayer {
 
         Set<Coordinate> pathSet = new HashSet<>(path);
 
-        for (int x = 0; x < width; x++) {
-            mazeString.append('+');
-            mazeString.append(mazeGrid[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
-        }
-        mazeString.append(Constants.CROSS_LINE_BREAKER);
+        printFirstLine(mazeString, maze);
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -96,4 +87,12 @@ public class Displayer implements MazeDisplayer {
         return mazeString.toString();
     }
 
+    private void printFirstLine(StringBuilder mazeString, Maze maze) {
+        for (int x = 0; x < maze.getWidth(); x++) {
+            mazeString.append('+');
+            mazeString.append(
+                maze.getMazeGrid()[x][0].hasWall(Direction.NORTH) ? Constants.HORIZONTAL_WALL : Constants.SPACE);
+        }
+        mazeString.append(Constants.CROSS_LINE_BREAKER);
+    }
 }
