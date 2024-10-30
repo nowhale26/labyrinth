@@ -1,5 +1,8 @@
-package backend.academy;
+package backend.academy.mazegenerators;
 
+import backend.academy.maze.Cell;
+import backend.academy.maze.Direction;
+import backend.academy.maze.Maze;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +18,7 @@ public class EllerMazeGenerator implements MazeGenerator {
     private int[] line;
     private int nextGroup;
 
-    EllerMazeGenerator(int height, int width) {
+    public EllerMazeGenerator(int height, int width) {
         this.height = height;
         this.width = width;
         maze = new Cell[width][height];

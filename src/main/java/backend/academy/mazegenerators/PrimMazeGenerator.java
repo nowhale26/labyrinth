@@ -1,5 +1,10 @@
-package backend.academy;
+package backend.academy.mazegenerators;
 
+import backend.academy.maze.Cell;
+import backend.academy.maze.Constants;
+import backend.academy.maze.Direction;
+import backend.academy.maze.Edge;
+import backend.academy.maze.Maze;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +16,7 @@ public class PrimMazeGenerator implements MazeGenerator {
     private List<Edge> nextEdges = new ArrayList<>();
     private SecureRandom random = new SecureRandom();
 
-    PrimMazeGenerator(int height, int width) {
+    public PrimMazeGenerator(int height, int width) {
         this.height = height;
         this.width = width;
         maze = new Cell[width][height];
@@ -31,13 +36,13 @@ public class PrimMazeGenerator implements MazeGenerator {
         int startX = random.nextInt(width);
         int startY = random.nextInt(height);
         Cell startCell = maze[startX][startY];
-        startCell.isVisited = true;
+        startCell.setVisited(true);
         addNextEdges(startCell);
         while (!nextEdges.isEmpty()) {
             Edge edge = nextEdges.remove(random.nextInt(nextEdges.size()));
-            if (!edge.nextCell.isVisited) {
+            if (!edge.nextCell.isVisited()) {
                 edge.currentCell.removeWall(edge.nextCell);
-                edge.nextCell.isVisited = true;
+                edge.nextCell.setVisited(true);
                 addNextEdges(edge.nextCell);
             }
         }
@@ -60,9 +65,9 @@ public class PrimMazeGenerator implements MazeGenerator {
 
     private void addNextEdges(Cell cell) {
         for (Direction dir : Direction.values()) {
-            int dx = cell.getX() + dir.dx;
-            int dy = cell.getY() + dir.dy;
-            if (checkValidCell(dx, dy) && !maze[dx][dy].isVisited) {
+            int dx = cell.getX() + dir.getDx();
+            int dy = cell.getY() + dir.getDy();
+            if (checkValidCell(dx, dy) && !maze[dx][dy].isVisited()) {
                 nextEdges.add(new Edge(cell, maze[dx][dy]));
             }
         }

@@ -1,4 +1,4 @@
-package backend.academy;
+package backend.academy.maze;
 
 public class Constants {
     private Constants() {
@@ -20,4 +20,5 @@ public class Constants {
     public static final String TYPE_Y = "Введите y координату от 0 до ";
     public static final String ERROR_X = "Ошибка: Не удалось прочитать позицию X";
     public static final String ERROR_Y = "Ошибка: Не удалось прочитать позицию Y";
+    public static final String ERROR_COORDINATE = "Ошибка: Координата должна быть числом.";
 }

@@ -1,5 +1,9 @@
-package backend.academy;
+package backend.academy.mazesolvers;
 
+import backend.academy.maze.Cell;
+import backend.academy.maze.Coordinate;
+import backend.academy.maze.Direction;
+import backend.academy.maze.Maze;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,8 +56,8 @@ public class BfsMazeSolver implements MazeSolver {
         int x = cell.getX();
         int y = cell.getY();
         for (Direction dir : Direction.values()) {
-            if (!cell.hasWall(dir) && checkValidCell(x + dir.dx, y + dir.dy)) {
-                eligibleNeighbours.add(new Coordinate(x + dir.dx, y + dir.dy));
+            if (!cell.hasWall(dir) && checkValidCell(x + dir.getDx(), y + dir.getDy())) {
+                eligibleNeighbours.add(new Coordinate(x + dir.getDx(), y + dir.getDy()));
             }
         }
         return eligibleNeighbours;

@@ -1,5 +1,10 @@
-package backend.academy;
+package backend.academy.mazesolvers;
 
+import backend.academy.maze.Cell;
+import backend.academy.maze.Constants;
+import backend.academy.maze.Coordinate;
+import backend.academy.maze.Direction;
+import backend.academy.maze.Maze;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,8 +53,8 @@ public class SwampMazeSolver implements MazeSolver {
 
             for (Direction dir : Direction.values()) {
                 if (!currentCell.hasWall(dir)) {
-                    int nx = x + dir.dx;
-                    int ny = y + dir.dy;
+                    int nx = x + dir.getDx();
+                    int ny = y + dir.getDy();
                     if (checkValidCell(nx, ny)) {
                         Cell neighbor = maze.getMazeGrid()[nx][ny];
                         int weight = neighbor.isSwamp() ? Constants.SWAMP_VALUE : 1;

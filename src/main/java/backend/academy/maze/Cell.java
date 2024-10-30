@@ -1,4 +1,4 @@
-package backend.academy;
+package backend.academy.maze;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,9 +9,9 @@ public class Cell {
     private int x;
     private int y;
     private boolean isSwamp = false;
-    boolean isVisited = false;
+    private boolean isVisited = false;
 
-    boolean[] walls = {true, true, true, true};
+    private boolean[] walls = {true, true, true, true};
 
     public Cell(int x, int y) {
         this.x = x;
@@ -26,7 +26,7 @@ public class Cell {
         System.arraycopy(cell.walls, 0, this.walls, 0, this.walls.length);
     }
 
-    boolean hasWall(Direction dir) {
+    public boolean hasWall(Direction dir) {
         return walls[dir.ordinal()];
     }
 

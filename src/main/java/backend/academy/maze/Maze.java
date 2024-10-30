@@ -1,4 +1,4 @@
-package backend.academy;
+package backend.academy.maze;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.Getter;

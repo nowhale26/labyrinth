@@ -1,4 +1,4 @@
-package backend.academy;
+package backend.academy.maze;
 
 import java.util.Objects;
 import lombok.Getter;

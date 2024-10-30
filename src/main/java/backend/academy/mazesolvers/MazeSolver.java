@@ -1,5 +1,6 @@
-package backend.academy;
+package backend.academy.mazesolvers;
 
+import backend.academy.maze.Coordinate;
 import java.util.List;
 
 public interface MazeSolver {

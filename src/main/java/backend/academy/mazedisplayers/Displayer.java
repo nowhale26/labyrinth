@@ -1,5 +1,10 @@
-package backend.academy;
+package backend.academy.mazedisplayers;
 
+import backend.academy.maze.Cell;
+import backend.academy.maze.Constants;
+import backend.academy.maze.Coordinate;
+import backend.academy.maze.Direction;
+import backend.academy.maze.Maze;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.HashSet;
 import java.util.List;
@@ -87,6 +92,7 @@ public class Displayer implements MazeDisplayer {
         return mazeString.toString();
     }
 
+    @SuppressFBWarnings("CLI_CONSTANT_LIST_INDEX")
     private void printFirstLine(StringBuilder mazeString, Maze maze) {
         for (int x = 0; x < maze.getWidth(); x++) {
             mazeString.append('+');

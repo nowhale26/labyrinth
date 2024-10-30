@@ -1,10 +1,7 @@
 package backend.academy.maze;
 
-import backend.academy.BfsMazeSolver;
-import backend.academy.Cell;
-import backend.academy.Coordinate;
-import backend.academy.Maze;
-import backend.academy.SwampMazeSolver;
+import backend.academy.mazesolvers.BfsMazeSolver;
+import backend.academy.mazesolvers.SwampMazeSolver;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
